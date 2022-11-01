@@ -2,18 +2,15 @@ import math as m
 import random
 from PIL import Image, ImageDraw
 from matplotlib import pyplot as plt
-from tqdm import trange,tqdm
+from tqdm import tqdm
 import imageio
 import time
 import os
 
 
-
-
-
-
 def process_data():
     time.sleep(0.02)
+
 
 def del_files_from_dir(PATH=r'C:\Users\pawel\OneDrive\Dokumenty\2 stopien\2 semestr\PwZN\2_Lab_symulacja\etapy\\'):
     # default PATH - PATH WITH IMAGES
@@ -119,9 +116,9 @@ class simulation:
             print('FILE NOT FOUND')
         # for step in trange(0, number_of_steps):
         #     time.sleep(0.0001)
-        for step in tqdm (range(number_of_steps),desc='Steps',colour='green'):
+        for step in tqdm(range(number_of_steps), desc='Steps', colour='green'):
             time.sleep(0.001)
-            for el in tqdm(range(size*size),desc='changed spins',colour='white'):
+            for el in tqdm(range(size * size), desc='changed spins', colour='white'):
                 time.sleep(0.001)
                 i = random.randint(0, size - 1)
                 j = random.randint(0, size - 1)
@@ -142,7 +139,10 @@ class simulation:
             pass
         else:
             imageio.mimsave(name_of_gif + '.gif', imgs, fps=size)
-        f.close()
+        try:
+            f.close()
+        except UnboundLocalError:
+            pass
 
     def count_Hamiltionian(self, size, spins, J, B):
         sum_of_spins = 0
@@ -166,5 +166,4 @@ class simulation:
 
 
 ob = simulation()
-ob.simulation_steps(10,4,0.5,1,1,'sim','img','magn2')
-
+ob.simulation_steps(10, 4, 0.5, 1, 1, )
